@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -6,6 +7,17 @@ public class App {
         Menu menu = new Menu();
         boolean runApp = true;
 
+        java.io.File pasta = new java.io.File("data");
+        if (!pasta.exists()) {
+            pasta.mkdirs();
+        }
+
+        // Classes auxiliares
+        Funcionario funcionarioAuxiliar = new Funcionario("", "", 0, "");
+        var listaFuncionarios = funcionarioAuxiliar.listar();
+        ArrayList<Produto> listaProdutos = Produto.listar();
+        ArrayList<Quarto> listaQuartos = Quarto.listar();
+
         while (runApp) {
             menu.mostrarMenu();
             int op = scanner.nextInt();
@@ -13,7 +25,215 @@ public class App {
 
             switch (op) {
                 case 1:
-                    System.out.println("Nothing here.");
+                    Funcionario f = Funcionario.criarFuncionario(scanner);
+                    if (f.inserir()) {
+                        System.out.println("_".repeat(30));
+                        System.out.println("Funcionário salvo com sucesso!");
+                    } else {
+                        System.out.println("_".repeat(30));
+                        System.out.println("Erro ao salvar funcionário.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("=== Lista de Funcionários ===");
+                    listaFuncionarios = funcionarioAuxiliar.listar();
+
+                    if (listaFuncionarios.isEmpty()) {
+                        System.out.println("Nenhum funcionário cadastrado.");
+                    } else {
+                        for (Pessoa p : listaFuncionarios) {
+                            System.out.println(p);
+                        }
+                    }
+                    System.out.println("_".repeat(30));
+                    break;
+                    
+                case 4: 
+                    break;
+
+                case 5:
+                    System.out.println("Remover Funcionário");
+                    listaFuncionarios = funcionarioAuxiliar.listar();
+
+                    if (listaFuncionarios.isEmpty()) {
+                        System.out.println("Nenhum funcionário cadastrado.");
+                    } else {
+                        for (Pessoa p : listaFuncionarios) {
+                            System.out.println(p);
+                        }
+                    }
+
+                    System.out.println("Digite o cpf do funcionário que deseja remover: ");
+                    String cpfFuncionarioASerRemovido = scanner.nextLine();
+                    funcionarioAuxiliar.deletar(cpfFuncionarioASerRemovido);
+                    break;
+
+                case 11: 
+                    System.out.println("Adicionar produto");
+                    Produto produto = Produto.criarProduto(scanner);
+                    if (produto.inserir()) {
+                        System.out.println("_".repeat(30));
+                        System.out.println("Produto salvo com sucesso!");
+                    } else {
+                        System.out.println("_".repeat(30));
+                        System.out.println("Erro ao salvar Produto.");
+                    }
+                    break;
+                
+                case 12: 
+                    System.out.println("=== Lista de Produtos ===");
+                    listaProdutos = Produto.listar();
+
+                    if (listaProdutos.isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    } else {
+                        for (Produto produtoCadastrado: listaProdutos) {
+                            System.out.println(produtoCadastrado);
+                        }
+                    }
+                    System.out.println("_".repeat(30));
+                    break;
+
+                case 13:
+                    System.out.println("=== Consultar produto ===");
+                    System.out.println("Digite o id do produto que quer consultar: ");
+                    int idProdutoConsulta = Integer.parseInt(scanner.nextLine());
+
+                    Produto produtoConsultado = Produto.consultar(idProdutoConsulta);
+
+                    if (produtoConsultado != null) {
+                        System.out.println(produtoConsultado.toString());
+                    } else {
+                        System.out.println("Não foi possível encontrar o produto");
+                    }
+
+                    break;
+                case 14:
+                    System.out.println("=== Editar Produto ===");
+                    System.out.println("Digite o id do produto que deseja editar.");
+                    listaProdutos = Produto.listar();
+
+                    if (listaProdutos.isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    } else {
+                        for (Produto produtoCadastrado: listaProdutos) {
+                            System.out.println(produtoCadastrado);
+                        }
+                    }
+
+                    int idProdutoEdit = Integer.parseInt(scanner.nextLine());
+
+                    if (Produto.editar(idProdutoEdit, scanner)) { 
+                        System.out.println("Produto editado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao editar produto.");
+                    }
+                    break;
+
+                case 15:
+                    System.out.println("=== Deletar Produto ===");
+                    System.out.println("Digite o ID do produto que quer remover");
+                    listaProdutos = Produto.listar();
+
+                    if (listaProdutos.isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    } else {
+                        for (Produto produtoCadastrado: listaProdutos) {
+                            System.out.println(produtoCadastrado);
+                        }
+                    }
+
+                    int idProduto = Integer.parseInt(scanner.nextLine());
+                    if (Produto.deletar(idProduto)) { 
+                        System.out.println("Produto deletado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao deletar produto.");
+                    }
+                    break;
+
+                case 21: 
+                    System.out.println("=== Adicionar Quarto ===");
+
+                    Quarto quarto = Quarto.criarQuarto(scanner);
+                    if (quarto.inserir()) {
+                        System.out.println("_".repeat(30));
+                        System.out.println("Quarto salvo com sucesso!");
+                    } else {
+                        System.out.println("_".repeat(30));
+                        System.out.println("Erro ao salvar Quarto.");
+                    }
+                    break;
+
+                case 22: 
+                    System.out.println("=== Lista de Quartos ===");
+                    listaQuartos = Quarto.listar();
+
+                    if (listaQuartos.isEmpty()) {
+                        System.out.println("Nenhum Quarto cadastrado.");
+                    } else {
+                        for (Quarto quartoCadastrado: listaQuartos) {
+                            System.out.println(quartoCadastrado);
+                        }
+                    }
+                    System.out.println("_".repeat(30));
+                    break;
+
+                case 23:
+                    System.out.println("=== Consultar Quarto ===");
+                    System.out.println("Digite o id do Quarto que quer consultar: ");
+                    int idQuartoConsulta = Integer.parseInt(scanner.nextLine());
+
+                    Quarto quartoConsultado = Quarto.consultar(idQuartoConsulta);
+
+                    if (quartoConsultado != null) {
+                        System.out.println(quartoConsultado.toString());
+                    } else {
+                        System.out.println("Não foi possível encontrar o Quarto");
+                    }
+                    break;
+
+                case 24:
+                    System.out.println("=== Editar Quarto ===");
+                    System.out.println("Digite o id do quarto que deseja editar.");
+                    listaQuartos = Quarto.listar();
+
+                    if (listaQuartos.isEmpty()) {
+                        System.out.println("Nenhum quarto cadastrado.");
+                    } else {
+                        for (Quarto quartoCadastrado: listaQuartos) {
+                            System.out.println(quartoCadastrado);
+                        }
+                    }
+
+                    int idQuartoEdit = Integer.parseInt(scanner.nextLine());
+
+                    if (Quarto.editar(idQuartoEdit, scanner)) { 
+                        System.out.println("Produto editado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao editar produto.");
+                    }
+                    break;
+
+                case 25:
+                    System.out.println("=== Deletar Quarto ===");
+                    System.out.println("Digite o ID do quarto que quer remover:");
+                    listaQuartos = Quarto.listar();
+
+                    if (listaQuartos.isEmpty()) {
+                        System.out.println("Nenhum quarto cadastrado.");
+                    } else {
+                        for (Quarto quartoCadastrado: listaQuartos) {
+                            System.out.println(quartoCadastrado);
+                        }
+                    }
+
+                    int idQuartoToDelete = Integer.parseInt(scanner.nextLine());
+                    if (Quarto.deletar(idQuartoToDelete)) { 
+                        System.out.println("Quarto deletado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao deletar quarto.");
+                    }
                     break;
 
                 case 0:
@@ -21,11 +241,18 @@ public class App {
                     System.out.println("Fechando o Aplicativo.");
                     runApp = false;
                     break;
-            
+
                 default:
                     System.out.println("Opção inválida.");
+
                     break;
             }
         }
+
+        scanner.close();
     }
 }
+
+
+// TODO: Criar editar funcionario...
+// TODO: Criar listar, editar e remover produto..

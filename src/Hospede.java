@@ -7,4 +7,22 @@ public class Hospede extends Pessoa {
         this.rg = rg;
         this.fidelidade = fidelidade;
     }
+
+    @Override
+    protected String getNomeArquivotxt() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNomeArquivotxt'");
+    }
+
+    @Override
+    protected String toLinha() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toLinha'");
+    }
+
+    @Override
+    protected Pessoa fromLinha(String linha) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'fromLinha'");
+    }
 }

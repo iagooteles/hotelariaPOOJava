@@ -1,0 +1,23 @@
+✅ Correção do método inserir() — forma segura:
+public boolean inserir() {
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(getNomeArquivotxt(), true))) {
+        bw.write(toLinha());
+        bw.newLine();
+        return true;
+    } catch (IOException e) {
+        System.out.println("Erro ao inserir: " + e.getMessage());
+        return false;
+    }
+}
+✔️ Motivos para isso:
+O try-with-resources garante que o BufferedWriter seja fechado automaticamente, mesmo que ocorra erro.
+
+Usar bw.newLine() é melhor que \n porque é multiplataforma (Windows, Linux, etc.).
+
+Você não precisa abrir FileWriter e BufferedWriter separados; só abrir BufferedWriter já resolve, porque ele recebe o FileWriter internamente.
+
+
+
+Perguntas ao prof => 
+
+Só pra deixar extremamente claro, eu já tenho listar e inserir na classe pai Pessoa...
