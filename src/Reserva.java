@@ -27,6 +27,10 @@ public class Reserva {
         this.checkout = checkout;
     }
 
+    public int getIdReserva() {
+        return this.idReserva;
+    }
+
     private String toLinha() {
         return this.idReserva + ";" + 
                this.quarto.getIdQuarto() + ";" + 
@@ -172,9 +176,21 @@ public class Reserva {
         int idQuarto = Integer.parseInt(sc.nextLine());
         Quarto quarto = Quarto.consultar(idQuarto);
 
+        if (quarto == null) {
+            System.out.println("Não foi possível encontrar um quarto com este ID. \nTente novamente.");
+
+            return null;
+        }
+
         System.out.println("Digite o cpf do hóspede:");
         String cpfHospede = sc.nextLine();
         Hospede hospede = Hospede.buscarPorCpf(cpfHospede);
+
+        if (hospede == null) {
+            System.out.println("Não foi possível encontrar um Hospede com este cpf. \nTente novamente.");
+            
+            return null;
+        }
 
         System.out.print("Digite o valor da reserva: ");
         double valor = Double.parseDouble(sc.nextLine());

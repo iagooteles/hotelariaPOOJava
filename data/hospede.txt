@@ -1,2 +1,3 @@
-022525;Bilas;9;1589632;false
-Pandora;Pandora ;10;1811326;false
+1;bilas;9;200;false
+2;pandora;10;20;false
+3;gabes;24;24;false

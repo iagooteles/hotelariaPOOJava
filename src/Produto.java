@@ -18,6 +18,10 @@ public class Produto {
         this.valor = valor;
     }
 
+    public int getIdProduto() {
+        return this.idProduto;
+    }
+
     private String toLinha() {
         return this.idProduto + ";" + this.descProduto + ";" + this.valor;
     }

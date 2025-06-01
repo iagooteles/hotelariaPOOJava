@@ -80,6 +80,9 @@ public class Quarto {
         } catch (IOException e) {
             e.getMessage();
             return null;
+        } catch (NullPointerException e) {
+            e.getMessage();
+            return null;
         }
     }
 
