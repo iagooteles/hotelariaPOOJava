@@ -16,6 +16,10 @@ public abstract class Pessoa {
         this.idade = idade;
     }
 
+    public String getCpf() {
+        return this.cpf;
+    }
+
     protected abstract String getNomeArquivotxt();
     protected abstract String toLinha();
     protected abstract Pessoa fromLinha(String linha);

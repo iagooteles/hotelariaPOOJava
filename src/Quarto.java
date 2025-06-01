@@ -16,6 +16,10 @@ public class Quarto {
         this.descQuarto = descQuarto;
     }
 
+    public int getIdQuarto() {
+        return this.idQuarto;
+    }
+
     private String toLinha() {
         return this.idQuarto + ";" + this.descQuarto;
     }
