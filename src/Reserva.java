@@ -16,10 +16,10 @@ public class Reserva {
     private boolean checkin;
     private boolean checkout;
 
-    public Reserva(Quarto quarto, Hospede hospede, int idReserva, double valor, String dataEntrada, String dataSaida, boolean checkin, boolean checkout) {
+    public Reserva(int idReserva, Quarto quarto, Hospede hospede, double valor, String dataEntrada, String dataSaida, boolean checkin, boolean checkout) {
+        this.idReserva = idReserva;
         this.quarto = quarto;
         this.hospede = hospede;
-        this.idReserva = idReserva;
         this.valor = valor;
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
@@ -74,7 +74,7 @@ public class Reserva {
                 Hospede hospede = Hospede.buscarPorCpf(cpfHospede);
 
                 if (quarto != null && hospede != null) {
-                    reservas.add(new Reserva(quarto, hospede, idReserva, valor, dataEntrada, dataSaida, checkin, checkout));
+                    reservas.add(new Reserva(idReserva, quarto, hospede, valor, dataEntrada, dataSaida, checkin, checkout));
                 }
             }
 
@@ -85,7 +85,7 @@ public class Reserva {
         }
     }
 
-    public static Reserva consultar(int id) {
+    public static Reserva consultar(int idReservaConsultada) {
         try (BufferedReader br = new BufferedReader(new FileReader("data/reserva.txt"))) {
             String linha;
 
@@ -93,7 +93,7 @@ public class Reserva {
                 String[] partes = linha.split(";");
 
                 int idReserva = Integer.parseInt(partes[0]);
-                if (idReserva == id) {
+                if (idReserva == idReservaConsultada) {
                     int idQuarto = Integer.parseInt(partes[1]);
                     String cpfHospede = partes[2];
                     double valor = Double.parseDouble(partes[3]);
@@ -106,7 +106,7 @@ public class Reserva {
                     Hospede hospede = Hospede.buscarPorCpf(cpfHospede);
 
                     if (quarto != null && hospede != null) {
-                        return new Reserva(quarto, hospede, idReserva, valor, dataEntrada, dataSaida, checkin, checkout);
+                        return new Reserva(idReserva, quarto, hospede, valor, dataEntrada, dataSaida, checkin, checkout);
                     }
                 }
             }
@@ -201,7 +201,7 @@ public class Reserva {
         System.out.print("Digite a data de saída (DD/MM/AAAA): ");
         String dataSaida = sc.nextLine();
 
-        return new Reserva(quarto, hospede, idReserva, valor, dataEntrada, dataSaida, false, false);
+        return new Reserva(idReserva, quarto, hospede, valor, dataEntrada, dataSaida, false, false);
     }
 
     @Override

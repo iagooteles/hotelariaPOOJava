@@ -1,2 +1,22 @@
-4;Chave;5.0
-6;PC Gamer 3.0;20000.0
+1;Toalha;25.0
+2;Limpeza de pele;55.0
+3;Toalha de Banho;25.0
+4;Toalha de Rosto;15.0
+5;Sabonete;5.0
+6;Shampoo;10.0
+7;Condicionador;10.0
+8;Secador de Cabelo;150.0
+9;Frigobar;1200.0
+10;Televisão Smart 32";1300.0
+11;Cama Box Casal;2500.0
+12;Travesseiro;40.0
+13;Edredom;180.0
+14;Controle Remoto;60.0
+15;Cartão de Acesso;5.0
+16;Ar Condicionado Split;2800.0
+17;Sofá;900.0
+18;Mesa de Cabeceira;350.0
+19;Cofre Eletrônico;750.0
+20;Roupão;150.0
+21;Kit Higiene (escova, pasta, fio dental);20.0
+22;Chaleira Elétrica;180.0

@@ -20,6 +20,7 @@ public class App {
         ArrayList<Produto> listaProdutos = Produto.listar();
         ArrayList<Quarto> listaQuartos = Quarto.listar();
         ArrayList<Reserva> listaReservas = Reserva.listar();
+        ArrayList<Consumo> listaConsumos = Consumo.listar();
 
         while (runApp) {
             menu.mostrarMenu();
@@ -28,8 +29,9 @@ public class App {
 
             switch (op) {
                 case 1:
-                    Funcionario f = Funcionario.criarFuncionario(scanner);
-                    if (f.inserir()) {
+                    System.out.println("=== Adicionar Funcionário ===");
+                    Funcionario funcionarioAdicionado = Funcionario.criarFuncionario(scanner);
+                    if (funcionarioAdicionado.inserir()) {
                         System.out.println("_".repeat(30));
                         System.out.println("Funcionário salvo com sucesso!");
                     } else {
@@ -45,11 +47,26 @@ public class App {
                     if (listaFuncionarios.isEmpty()) {
                         System.out.println("Nenhum funcionário cadastrado.");
                     } else {
-                        for (Pessoa p : listaFuncionarios) {
-                            System.out.println(p);
+                        for (Pessoa funcionarioListado : listaFuncionarios) {
+                            System.out.println(funcionarioListado);
                         }
                     }
                     System.out.println("_".repeat(30));
+                    break;
+                
+                case 3:
+                    System.out.println("=== Consultar Funcionário ===");
+                    System.out.println("Digite o cpf do funcionário que quer consultar: ");
+                    String cpfFuncionario = scanner.nextLine();
+
+                    Pessoa pessoaConsultada = funcionarioAuxiliar.consultar(cpfFuncionario);
+                    Funcionario funcionarioConsultado = (Funcionario) pessoaConsultada;
+
+                    if (funcionarioConsultado != null) {
+                        System.out.println(funcionarioConsultado);
+                    } else {
+                        System.out.println("Não foi possível encontrar o funcionário");
+                    }
                     break;
                     
                 case 4: 
@@ -297,8 +314,6 @@ public class App {
                     }
                     break;
 
-                    
-
                 case 41: 
                     System.out.println("=== Adicionar Reserva ===");
 
@@ -387,6 +402,100 @@ public class App {
                         System.out.println("Reserva deletada com sucesso!");
                     } else {
                         System.out.println("Erro ao deletar Reserva.");
+                    }
+                    break;
+
+                    
+                case 51: 
+                    System.out.println("=== Adicionar Consumo ===");
+
+                    try {
+                        Consumo consumo = Consumo.criarConsumo(scanner);
+                        if (consumo.inserir()) {
+                            System.out.println("_".repeat(30));
+                            System.out.println("Consumo salvo com sucesso!");
+                        } else {
+                            System.out.println("_".repeat(30));
+                            System.out.println("Erro ao salvar Consumo.");
+                        }
+                    } catch (NullPointerException e) {
+                        e.getMessage();
+                    }
+
+                    break;
+
+                case 52: 
+                    System.out.println("=== Lista de Consumos ===");
+                    listaConsumos = Consumo.listar();
+
+                    if (listaConsumos.isEmpty()) {
+                        System.out.println("Nenhum Consumo cadastrado.");
+                    } else {
+                        for (Consumo consumoCadastrado: listaConsumos) {
+                            System.out.println(consumoCadastrado);
+                        }
+
+                    }
+                    System.out.println("_".repeat(30));
+                    break;
+
+                case 53:
+                    System.out.println("=== Consultar Consumo ===");
+                    System.out.println("Digite o id do consumo que quer consultar: ");
+                    int idConsumoConsulta = Integer.parseInt(scanner.nextLine());
+
+                    Consumo consumoConsultada = Consumo.consultar(idConsumoConsulta);
+
+                    if (consumoConsultada != null) {
+                        System.out.println(consumoConsultada);
+                    } else {
+                        System.out.println("Não foi possível encontrar o consumo.");
+                    }
+                    break;
+
+                case 54:
+                    System.out.println("=== Editar Consumo ===");
+                    listaConsumos = Consumo.listar();
+                    System.out.println("Lista de consumos:");
+
+                    if (listaConsumos.isEmpty()) {
+                        System.out.println("Nenhum consumo cadastrado.");
+                    } else {
+                        for (Consumo consumoCadastrado: listaConsumos) {
+                            System.out.println(consumoCadastrado);
+                        }
+                    }
+                    
+                    System.out.println("Digite o id do consumo que deseja editar.");
+                    int idConsumoEdit = Integer.parseInt(scanner.nextLine());
+
+                    if (Consumo.editar(idConsumoEdit, scanner)) {
+                        System.out.println("Consumo editado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao editar consumo.");
+                    }
+                    break;
+
+                case 55:
+                    System.out.println("=== Deletar Consumo ===");
+                    System.out.println("Lista de consumos:");
+                    listaConsumos = Consumo.listar();
+                    
+                    if (listaConsumos.isEmpty()) {
+                        System.out.println("Nenhum consumo cadastrado.");
+                    } else {
+                        for (Consumo consumoCadastrado: listaConsumos) {
+                            System.out.println(consumoCadastrado);
+                        }
+                    }
+                    System.out.println("_".repeat(30));
+                    System.out.println("Digite o ID d consumo que quer remover:");
+
+                    int idConsumoToDelete = Integer.parseInt(scanner.nextLine());
+                    if (Consumo.deletar(idConsumoToDelete)) { 
+                        System.out.println("Consumo deletado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao deletar consumo.");
                     }
                     break;
 

@@ -37,6 +37,24 @@ public abstract class Pessoa {
         }
     }
 
+    public Pessoa consultar(String cpfConsultado) {
+        try (BufferedReader br = new BufferedReader(new FileReader(getNomeArquivotxt()))) {
+            String linha;
+
+            while ((linha = br.readLine()) != null) {
+                Pessoa pessoa = fromLinha(linha);
+                if (pessoa != null && pessoa.getCpf().equals(cpfConsultado)) {
+                    return pessoa;
+                }
+            }
+
+            return null;
+        } catch (IOException e) {
+            System.out.println("Erro ao consultar: " + e.getMessage());
+            return null;
+        }
+    }
+
     public ArrayList<Pessoa> listar() {
         ArrayList<Pessoa> lista = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(getNomeArquivotxt()))) {

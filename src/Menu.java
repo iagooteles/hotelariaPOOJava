@@ -38,6 +38,13 @@ public class Menu {
         System.out.println("44 - Editar Reserva");
         System.out.println("45 - Remover Reserva");
 
+        System.out.println("\n========Consumo========");
+        System.out.println("51 - Adicionar Consumo");
+        System.out.println("52 - Listar Consumos");
+        System.out.println("53 - Consultar Consumo");
+        System.out.println("54 - Editar Consumo");
+        System.out.println("55 - Remover Consumo");
+
         System.out.println("\n0 - Sair do Aplicativo");
         System.out.println("_".repeat(30));
     }
