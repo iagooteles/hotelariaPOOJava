@@ -5,11 +5,17 @@ Este projeto é um sistema de gestão para hotelaria, desenvolvido em Java com p
 O sistema foi desenvolvido como parte de uma avaliação, atendendo aos seguintes critérios:
 
 ✅ Leitura e escrita em arquivos .txt
+
 ✅ Tratamento de exceções além de IOException em pelo menos 5 classes
+
 ✅ Implementação de classe abstrata
+
 ✅ Herança aplicada em duas classes
+
 ✅ Método toString() implementado em todas as classes
+
 ✅ Encapsulamento aplicado em todos os objetos
+
 ✅ Menu funcional para interação com o usuário
 
 ## 📦 Funcionalidades
@@ -54,14 +60,21 @@ produto (Produto), reserva (Reserva)
 
 ## 🧠 Implementações Técnicas
 ✔️ Encapsulamento: Todos os atributos são privados ou protegidos com acesso via getters e setters.
+
 ✔️ Herança: Aplicada nas classes Funcionario e Hospede a partir da classe abstrata Pessoa.
+
 ✔️ Classe Abstrata: Pessoa contém atributos e comportamentos comuns.
+
 ✔️ Método toString(): Implementado em todas as classes para exibir informações legíveis dos objetos.
+
 ✔️ Manipulação de Arquivos: Todos os dados são lidos e gravados em arquivos .txt.
+
 ✔️ Tratamento de Exceções: Implementado além de IOException (como NumberFormatException, NullPointerException, InputMismatchException, entre outros) em pelo menos 5 classes.
+
 ✔️ Menu Interativo: Sistema apresenta um menu funcional no console, permitindo a navegação e utilização de todas as funções do sistema.
 
 ## 🚀 Execução do Projeto
+
 ✔️ Pré-requisitos:
 Java JDK instalado (versão 8 ou superior)
 
@@ -86,17 +99,21 @@ java src.Menu
 Os dados são armazenados na pasta data/, em arquivos .txt separados por entidade, como:
 
 data/
-├── funcionario.txt
-├── hospede.txt
-├── produto.txt
-├── quarto.txt
-├── reserva.txt
-└── consumo.txt
+├── funcionario.txt  
+├── hospede.txt  
+├── produto.txt  
+├── quarto.txt  
+├── reserva.txt  
+└── consumo.txt  
 
 
 ## 📝 Funcionalidades do Menu
 ✅ Cadastrar (Funcionário, Hóspede, Quarto, Produto, Reserva, Consumo)
+
 ✅ Editar registros existentes
+
 ✅ Listar todos os registros
+
 ✅ Consultar por ID (ou CPF no caso de pessoas)
+
 ✅ Mostrar detalhes de registros
