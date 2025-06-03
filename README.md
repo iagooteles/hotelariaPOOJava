@@ -92,7 +92,7 @@ javac src/*.java
 
 Execute o sistema:
 ```bash
-java src.Menu
+java src.App
 ```
 
 ## 📂 Estrutura de Arquivos
