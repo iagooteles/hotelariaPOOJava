@@ -98,7 +98,7 @@ java src.Menu
 ## 📂 Estrutura de Arquivos
 Os dados são armazenados na pasta data/, em arquivos .txt separados por entidade, como:
 
-data/
+data/  
 ├── funcionario.txt  
 ├── hospede.txt  
 ├── produto.txt  
