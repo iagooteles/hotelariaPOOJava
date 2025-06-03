@@ -1,37 +1,102 @@
-Para a avaliação teremos os seguintes critérios: 
+# 🏨 Sistema de Gestão Hoteleira em Java
 
-Todos os métodos devem escrever e ler em txt;
-Tratamento de exceção diferente do IOException em pelo menos 5 classes ; 
-Implementação da classe abstrata; 
-Implementação de herança em 2 classes;
-Método toString implementado em todos os objetos;
-Uso de encapsulamento em todos os objetos; 
+Este projeto é um sistema de gestão para hotelaria, desenvolvido em Java com persistência de dados em arquivos .txt. O sistema permite o cadastro, consulta, edição e listagem de hóspedes, funcionários, quartos, reservas, produtos e consumos.
 
-OBS: A execução do sistema desenvolvido deve coletar informações de entrada do usuário, realizar o processamento da mesma e em seguida, realizar a exibição das informações processadas. Para realizar esta tarefa, o sistema precisa conter um MENU funcional que realiza a gestão de todos os requisitos descritos anteriormente. A avaliação do trabalho está condicionada ao envio do código fonte sem erros de compilação e pela arguição realizada em sala de aula de forma individual. Nesta arguição, o aluno deverá responder perguntas e explicar sobre as implementações do sistema. Caso haja o descumprimento de alguma das exigências anteriores, será atribuída nota zero para o critério. Além disso, o aluno que não saiba explicar ou responder perguntas sobre o código fonte desenvolvido, também será atribuída nota zero ao trabalho.
+O sistema foi desenvolvido como parte de uma avaliação, atendendo aos seguintes critérios:
 
-Requisitos:
+✅ Leitura e escrita em arquivos .txt
+✅ Tratamento de exceções além de IOException em pelo menos 5 classes
+✅ Implementação de classe abstrata
+✅ Herança aplicada em duas classes
+✅ Método toString() implementado em todas as classes
+✅ Encapsulamento aplicado em todos os objetos
+✅ Menu funcional para interação com o usuário
 
-Classe Abstrata Pessoa com atributos protected cpf do tipo String, nome do tipo String e idade do tipo int;
+## 📦 Funcionalidades
+- 🧑‍💼 Gestão de Funcionários
+- 🧑‍🎓 Gestão de Hóspedes
+- 🏨 Gestão de Quartos
+- 📦 Gestão de Produtos
+- 📅 Gestão de Reservas (associadas a hóspedes e quartos)
+- 🍽️ Gestão de Consumos (associados a reservas e produtos)
 
-Classe Funcionario que herda de Pessoa. Adicionar atributos privados  funcao do tipo String;
+## 🏗️ Estrutura de Classes
+🔷 Classe Abstrata
+Pessoa
+Atributos: cpf (String), nome (String), idade (int)
+✔️ Definida como abstrata para generalizar características comuns a funcionários e hóspedes.
 
-Classe Hospede que herda de Pessoa e adiciona atributos privados rg do tipo String, fidelidade do tipo Boolean;
+🧑‍💼 Classe Funcionario (herda Pessoa)
+Atributo específico: funcao (String)
 
-Classe Quarto com atributos privados idQuarto  do tipo int, descQuarto  do tipo String;
+🧑‍🎓 Classe Hospede (herda Pessoa)
+Atributos específicos: rg (String), fidelidade (Boolean)
 
-Classe Produto com atributos privados idProduto   do tipo int, descProduto  do tipo String e valor do tipo Double;
+🏨 Classe Quarto
+Atributos: idQuarto (int), descQuarto (String)
 
-Classe Reserva que tem um relacionamento associação com Quarto e Hospede e tem atributos privados idReserva do tipo int, valor do tipo Double, dataEntrada do tipo String, dataSaida do tipo String, checkin do tipo Boolean, checkout do tipo Boolean, quarto do tipo Quarto e hospede do tipo Hospede;
+🛍️ Classe Produto
+Atributos: idProduto (int), descProduto (String), valor (Double)
 
-Classe Consumo que tem associação com Reserva e Produto, atributos privados idConsumo do tipo int, produto do tipo Produto, reserva do tipo Reserva e quantidade do tipo Double;
+📅 Classe Reserva
+Atributos:
+idReserva (int), valor (Double), dataEntrada (String), dataSaida (String), checkin (Boolean), checkout (Boolean)
+
+Associações:
+quarto (Quarto), hospede (Hospede)
+
+🍽️ Classe Consumo
+Atributos:
+idConsumo (int), quantidade (Double)
+
+Associações:
+produto (Produto), reserva (Reserva)
+
+## 🧠 Implementações Técnicas
+✔️ Encapsulamento: Todos os atributos são privados ou protegidos com acesso via getters e setters.
+✔️ Herança: Aplicada nas classes Funcionario e Hospede a partir da classe abstrata Pessoa.
+✔️ Classe Abstrata: Pessoa contém atributos e comportamentos comuns.
+✔️ Método toString(): Implementado em todas as classes para exibir informações legíveis dos objetos.
+✔️ Manipulação de Arquivos: Todos os dados são lidos e gravados em arquivos .txt.
+✔️ Tratamento de Exceções: Implementado além de IOException (como NumberFormatException, NullPointerException, InputMismatchException, entre outros) em pelo menos 5 classes.
+✔️ Menu Interativo: Sistema apresenta um menu funcional no console, permitindo a navegação e utilização de todas as funções do sistema.
+
+## 🚀 Execução do Projeto
+✔️ Pré-requisitos:
+Java JDK instalado (versão 8 ou superior)
+
+▶️ Como executar:
+Clone este repositório:
+
+```bash
+git clone https://github.com/iagooteles/hotelariaPOOJava.git
+```
+
+Compile os arquivos Java:
+```bash
+javac src/*.java
+```
+
+Execute o sistema:
+```bash
+java src.Menu
+```
+
+## 📂 Estrutura de Arquivos
+Os dados são armazenados na pasta data/, em arquivos .txt separados por entidade, como:
+
+data/
+├── funcionario.txt
+├── hospede.txt
+├── produto.txt
+├── quarto.txt
+├── reserva.txt
+└── consumo.txt
 
 
-Todas as classes terão os métodos de públicos da seguinte forma:
-
-método construtor recebendo todos os atributos;
-método inserir sem argumento com retorno Boolean;
-método editar sem argumento com retorno Boolean;
-método listar sem argumento com retorno ArrayList da classe;
-método consultar com argumento do id e tipo int com retorno do objeto da classe;
-método mostrar com todos os atributos apresentados.
-
+## 📝 Funcionalidades do Menu
+✅ Cadastrar (Funcionário, Hóspede, Quarto, Produto, Reserva, Consumo)
+✅ Editar registros existentes
+✅ Listar todos os registros
+✅ Consultar por ID (ou CPF no caso de pessoas)
+✅ Mostrar detalhes de registros

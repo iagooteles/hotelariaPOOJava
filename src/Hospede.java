@@ -1,5 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Hospede extends Pessoa {
@@ -76,4 +80,64 @@ public class Hospede extends Pessoa {
         return super.toString() + " | Função: " + this.rg + " | Fidelidade: " + this.fidelidade;
     }
 
+    public static boolean editar(String cpfEdit, Scanner scanner) {
+        ArrayList<String> linhas = new ArrayList<>();
+        boolean hospedeEncontrado = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("data/hospede.txt"))) {
+            String linha;
+
+            while ((linha = br.readLine()) != null) {
+                String[] partes = linha.split(";");
+
+                String cpf = partes[0];
+                String nome = partes[1];
+                int idade = Integer.parseInt(partes[2]);
+                String rg = partes[3];
+                boolean fidelidade = Boolean.parseBoolean(partes[4]);
+
+                if (cpf.equals(cpfEdit)) {
+                    hospedeEncontrado = true;
+                    System.out.println("=== Editando Hóspede CPF: " + cpf + " ===");
+
+                    System.out.print("Novo nome (atual: " + nome + "): ");
+                    String novoNome = scanner.nextLine();
+
+                    System.out.print("Nova idade (atual: " + idade + "): ");
+                    int novaIdade = Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("Novo RG (atual: " + rg + "): ");
+                    String novoRg = scanner.nextLine();
+
+                    System.out.print("Participa do programa de fidelidade? (atual: " + fidelidade + ") (true/false): ");
+                    boolean novoFidelidade = Boolean.parseBoolean(scanner.nextLine());
+
+                    String novaLinha = cpf + ";" + novoNome + ";" + novaIdade + ";" + novoRg + ";" + novoFidelidade;
+                    linhas.add(novaLinha);
+                } else {
+                    linhas.add(linha);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao ler arquivo: " + e.getMessage());
+            return false;
+        }
+
+        if (!hospedeEncontrado) {
+            System.out.println("Hóspede não encontrado.");
+            return false;
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("data/hospede.txt"))) {
+            for (String l : linhas) {
+                bw.write(l);
+                bw.newLine();
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar arquivo: " + e.getMessage());
+            return false;
+        }
+    }
 }

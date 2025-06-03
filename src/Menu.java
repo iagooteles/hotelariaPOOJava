@@ -1,5 +1,4 @@
 public class Menu {
-
     void mostrarMenu() {
         System.out.println("_".repeat(30));
         System.out.println("Selecione uma opção:");

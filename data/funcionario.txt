@@ -1,4 +1,4 @@
-99;iago;29;dev
+99;iago teles;30;dev full stack
 100;ana;25;recepcionista
 101;bruno;32;gerente
 102;carla;28;camareira
@@ -14,8 +14,6 @@
 112;mariana;24;atendente
 113;nicolas;38;porteiro
 114;olivia;26;camareira
-115;paulo;36;gerente
 116;quiteria;28;recepcionista
-117;rafael;34;seguranca
+117;bilas;9;doguinho
 118;sabrina;25;atendente
-119;tiago;29;dev

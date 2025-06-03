@@ -70,6 +70,25 @@ public class App {
                     break;
                     
                 case 4: 
+                    System.out.println("=== Editar Funcionário ===");
+                    System.out.println("Digite o cpf do funcionário que deseja editar.");
+                    listaFuncionarios = funcionarioAuxiliar.listar();
+
+                    if (listaFuncionarios.isEmpty()) {
+                        System.out.println("Nenhum Funcionário cadastrado.");
+                    } else {
+                        for (var funcionarioCadastrado: listaFuncionarios) {
+                            System.out.println(funcionarioCadastrado);
+                        }
+                    }
+
+                    String cpfFuncionarioEdit = scanner.nextLine();
+
+                    if (Funcionario.editar(cpfFuncionarioEdit, scanner)) { 
+                        System.out.println("Funcionário editado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao editar Funcionário.");
+                    }
                     break;
 
                 case 5:
@@ -86,7 +105,12 @@ public class App {
 
                     System.out.println("Digite o cpf do funcionário que deseja remover: ");
                     String cpfFuncionarioASerRemovido = scanner.nextLine();
-                    funcionarioAuxiliar.deletar(cpfFuncionarioASerRemovido);
+                    if (funcionarioAuxiliar.deletar(cpfFuncionarioASerRemovido)) {
+                        System.out.println("Funcionário removido com sucesso!");
+                    } else {
+                        System.out.println("Não foi possível remover o funcionário.");
+                    }
+                    
                     break;
 
                 case 11: 
@@ -117,14 +141,40 @@ public class App {
                     
                 case 13:
                     System.out.println("=== Consultar de Hóspede ===");
-                    System.out.println("Digite o cpf do hospede que quer consultar: ");
+                    System.out.println("Digite o cpf do Hóspede que quer consultar: ");
                     String cpfHospedeConsulta = scanner.nextLine();
-                    
-                
-                case 14: 
+
+                    Pessoa pessoaConsultadaComoHospede = hospedeAuxiliar.consultar(cpfHospedeConsulta);
+                    Hospede hospedeConsultado = (Hospede) pessoaConsultadaComoHospede;
+
+                    if (hospedeConsultado != null) {
+                        System.out.println(hospedeConsultado);
+                    } else {
+                        System.out.println("Não foi possível encontrar o hóspede");
+                    }
                     break;
 
+                case 14: 
+                    System.out.println("=== Editar Hóspede ===");
+                    System.out.println("Digite o cpf do Hóspede que deseja editar.");
+                    listaHospedes = hospedeAuxiliar.listar();
 
+                    if (listaHospedes.isEmpty()) {
+                        System.out.println("Nenhum Hóspede cadastrado.");
+                    } else {
+                        for (var hospedeCadastrado: listaHospedes) {
+                            System.out.println(hospedeCadastrado);
+                        }
+                    }
+
+                    String cpfHospedeEdit = scanner.nextLine();
+
+                    if (Hospede.editar(cpfHospedeEdit, scanner)) { 
+                        System.out.println("Hóspede editado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao editar Hóspede.");
+                    }
+                    break;
                 
                 case 15:
                     System.out.println("Remover Hóspede");
@@ -404,7 +454,6 @@ public class App {
                         System.out.println("Erro ao deletar Reserva.");
                     }
                     break;
-
                     
                 case 51: 
                     System.out.println("=== Adicionar Consumo ===");
@@ -515,7 +564,3 @@ public class App {
         scanner.close();
     }
 }
-
-
-// TODO: Criar editar funcionario...
-// TODO: Criar listar, editar e remover produto..

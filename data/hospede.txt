@@ -21,5 +21,5 @@
 21;thiago;32;280;true
 22;sophia;27;240;false
 23;marcos;41;520;false
-24;isabel;34;360;true
+24;Morty;17;555;true
 94894;Summer;39;200200200;false
