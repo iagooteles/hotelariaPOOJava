@@ -11,7 +11,7 @@
 11;Cama Box Casal;2500.0
 12;Travesseiro;40.0
 13;Edredom;180.0
-14;Controle Remoto;60.0
+14;Pilhas;10
 15;Cartão de Acesso;5.0
 16;Ar Condicionado Split;2800.0
 17;Sofá;900.0

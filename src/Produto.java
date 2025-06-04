@@ -102,12 +102,12 @@ public class Produto {
             return null;
         }
     }
-    // Perguntar: posso deixar meu editar com argumento?
+
     public static boolean editar(int idProdutoEdit, Scanner scanner) {
         try (BufferedReader br = new BufferedReader(new FileReader("data/produto.txt"))) {
-          
             ArrayList<String> linhas = new ArrayList<>();
             String linha;
+            boolean produtoEncontrado = false;
             
             while ((linha = br.readLine()) != null) {
                 String[] partes = linha.split(";");
@@ -115,7 +115,6 @@ public class Produto {
                 int idProduto = Integer.parseInt(partes[0]);
                 String descProduto = partes[1];
                 double valor = Double.parseDouble(partes[2]);
-                boolean produtoEncontrado = false;
 
                 if (idProduto == idProdutoEdit) {
                     produtoEncontrado = true;
@@ -129,10 +128,10 @@ public class Produto {
                 } else {
                     linhas.add(linha);
                 }
+            }
 
-                if (!produtoEncontrado) {
-                    return false;
-                }
+            if (!produtoEncontrado) {
+                return false;
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("data/produto.txt"))) {
@@ -232,7 +231,6 @@ public class Produto {
         return new Produto(idProduto, descProduto, valor);
     }
 
-    // Perguntar: método mostrar pode ser o toString????
     @Override
     public String toString() {
         return this.idProduto + " | " + this.descProduto + " | valor: " + this.valor;

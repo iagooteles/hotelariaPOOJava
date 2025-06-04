@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -118,6 +119,82 @@ public class Reserva {
         }
     }
 
+    public static boolean editar(int idReservaEdit, Scanner scanner) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/reserva.txt"))) {
+            ArrayList<String> linhas = new ArrayList<>();
+            String linha;
+            boolean reservaEncontrada = false;
+            
+            while ((linha = br.readLine()) != null) {
+                String[] partes = linha.split(";");
+
+                int idReserva = Integer.parseInt(partes[0]);
+                int idQuarto = Integer.parseInt(partes[1]);
+                String cpfHospede = partes[2];
+                double valor = Double.parseDouble(partes[3]);
+                String dataEntrada = partes[4];
+                String dataSaida = partes[5];
+                boolean checkin = Boolean.parseBoolean(partes[6]);
+                boolean checkout = Boolean.parseBoolean(partes[7]);
+
+                if (idReservaEdit == idReserva) {
+                    reservaEncontrada = true;
+                    System.out.println("Digite o novo ID do quarto(valor atual: " + idQuarto + ") :" );
+                    int novoIdQuarto = Integer.parseInt(scanner.nextLine());
+
+                    System.out.println("Digite o novo cpf do hospede:(valor atual: " + cpfHospede + ") :" );
+                    String novoCpfHospede = scanner.nextLine();
+
+                    System.out.println("Digite o novo valor (valor atual: " + valor + ") :" );
+                    double novoValor = Double.parseDouble(scanner.nextLine());
+
+                    System.out.println("Digite a nova data de entrada:(valor atual: " + dataEntrada + ") :" );
+                    String novaDataEntrada = scanner.nextLine();
+
+                    System.out.println("Digite a nova data de saída:(valor atual: " + dataSaida + ") :" );
+                    String novaDataSaida = scanner.nextLine();
+
+                    System.out.println("checkin( true / false ) :" );
+                    boolean novoCheckin = Boolean.parseBoolean(scanner.nextLine());
+
+                    System.out.println("checkout( true / false ) :" );
+                    boolean novoCheckout = Boolean.parseBoolean(scanner.nextLine());
+
+                    linhas.add(idReserva + ";" + novoIdQuarto + ";" + novoCpfHospede + ";" + novoValor + ";" + novaDataEntrada + ";" + novaDataSaida + ";" + novoCheckin + ";" + novoCheckout);
+                    
+                } else {
+                    linhas.add(linha);
+                }
+            }
+
+            if (!reservaEncontrada) {
+                return false;
+            }
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("data/reserva.txt"))) {
+                for (String l : linhas) {
+                    bw.write(l);
+                    bw.newLine();
+                }
+
+                return true;
+            } catch (IOException e) {
+                System.out.println("Erro ao salvar as alterações: " + e.getMessage());
+                return false;
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado.");
+            e.getMessage();
+
+            return false;
+        } catch (IOException e) {
+            e.getMessage();
+
+            return false;
+        }
+    }
+    
     public static boolean deletar(int idReservaDeletar) {
         try (BufferedReader br = new BufferedReader(new FileReader("data/reserva.txt"))) {
             ArrayList<String> linhas = new ArrayList<>();

@@ -337,9 +337,9 @@ public class App {
                     int idQuartoEdit = Integer.parseInt(scanner.nextLine());
 
                     if (Quarto.editar(idQuartoEdit, scanner)) { 
-                        System.out.println("Produto editado com sucesso!");
+                        System.out.println("Quarto editado com sucesso!");
                     } else {
-                        System.out.println("Erro ao editar produto.");
+                        System.out.println("Erro ao editar quarto.");
                     }
                     break;
 
@@ -410,27 +410,28 @@ public class App {
                     }
                     break;
 
-                // case 44:
-                //     System.out.println("=== Editar Reserva ===");
-                //     System.out.println("Digite o id da reserva que deseja editar.");
-                //     listaReservas = Reserva.listar();
+                case 44:
+                    System.out.println("=== Editar Reserva ===");
+                    System.out.println("Lista de reservas:");
+                    listaReservas = Reserva.listar();
+                    
+                    if (listaReservas.isEmpty()) {
+                        System.out.println("Nenhuma reserva cadastrada.");
+                    } else {
+                        for (Reserva reservaCadastrada: listaReservas) {
+                            System.out.println(reservaCadastrada);
+                        }
+                    }
+                    
+                    System.out.println("Digite o id da reserva que deseja editar.");
+                    int idReservaEdit = Integer.parseInt(scanner.nextLine());
 
-                //     if (listaReservas.isEmpty()) {
-                //         System.out.println("Nenhuma reserva cadastrada.");
-                //     } else {
-                //         for (Reserva reservaCadastrada: listaReservas) {
-                //             System.out.println(reservaCadastrada);
-                //         }
-                //     }
-
-                //     int idReservaEdit = Integer.parseInt(scanner.nextLine());
-
-                //     if (Reserva.editar(idReservaEdit, scanner)) { // criar depois //
-                //         System.out.println("Produto editado com sucesso!");
-                //     } else {
-                //         System.out.println("Erro ao editar produto.");
-                //     }
-                //     break;
+                    if (Reserva.editar(idReservaEdit, scanner)) {
+                        System.out.println("Reserva editada com sucesso!");
+                    } else {
+                        System.out.println("Erro ao editar reserva.");
+                    }
+                    break;
 
                 case 45:
                     System.out.println("=== Deletar Reserva ===");
