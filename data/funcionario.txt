@@ -11,9 +11,9 @@
 109;joao;30;seguranca
 110;karen;29;dev
 111;lucas;33;cozinheiro
-112;mariana;24;atendente
+112;pandora;10;doguinha
 113;nicolas;38;porteiro
 114;olivia;26;camareira
 116;quiteria;28;recepcionista
-117;bilas;9;doguinho
 118;sabrina;25;atendente
+1;bilas;9;dog

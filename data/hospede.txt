@@ -13,7 +13,7 @@
 13;leandro;38;410;false
 14;priscila;31;290;true
 15;ricardo;29;275;false
-16;aline;26;260;false
+16;Spike;12;2020;true
 17;roberto;50;600;false
 18;luana;23;190;true
 19;gustavo;36;340;false
@@ -22,4 +22,4 @@
 22;sophia;27;240;false
 23;marcos;41;520;false
 24;Morty;17;555;true
-94894;Summer;39;200200200;false
+33;Rex;12;300;false

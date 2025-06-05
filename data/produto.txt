@@ -18,5 +18,6 @@
 18;Mesa de Cabeceira;350.0
 19;Cofre Eletrônico;750.0
 20;Roupão;150.0
-21;Kit Higiene (escova, pasta, fio dental);20.0
+21;Kit higiene;50
 22;Chaleira Elétrica;180.0
+23;Caneta;20.0
