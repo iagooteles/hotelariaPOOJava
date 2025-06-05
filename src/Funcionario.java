@@ -1,6 +1,7 @@
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -91,6 +92,11 @@ public class Funcionario extends Pessoa {
                     linhas.add(linha);
                 }
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado.");
+            e.getMessage();
+            return false;
+            
         } catch (IOException e) {
             System.out.println("Erro ao ler arquivo: " + e.getMessage());
             return false;

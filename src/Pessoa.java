@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,6 +66,10 @@ public abstract class Pessoa {
                     lista.add(p);
                 }
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado.");
+            e.getMessage();
+
         } catch (IOException e) {
             System.out.println("Erro ao listar: " + e.getMessage());
         }
