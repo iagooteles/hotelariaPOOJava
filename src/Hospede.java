@@ -10,7 +10,6 @@ public class Hospede extends Pessoa {
     private String rg;
     private boolean fidelidade;
 
-    // Perguntar: Posso usar esse construtor?
     public Hospede(String cpf, String nome, int idade, String rg) {
         super(cpf, nome, idade);
         this.rg = rg;
